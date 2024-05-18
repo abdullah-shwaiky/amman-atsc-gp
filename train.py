@@ -12,15 +12,15 @@ else:
 
 from linear_rl.true_online_sarsa import TrueOnlineSarsaLambda
 
-from sumo_rl import uni_area
+from sumo_rl import seventh_area
 
 
-def run(use_gui=False, episodes=10):
+def run(use_gui=False, episodes=6):
     fixed_tl = False
-    reward_fns = ["average-speed"]
+    reward_fns = ["joint-waiting-queue", "queue", "diff-waiting-time", "average-speed", "pressure"]
 
     for reward in reward_fns:
-        env = uni_area(out_csv_name=f"outputs/uni_area/{reward}/{reward}", use_gui=use_gui, yellow_time=2, fixed_ts=fixed_tl,reward_fn=reward)
+        env = seventh_area(out_csv_name=f"outputs/7th-area/{reward}/{reward}", use_gui=use_gui, yellow_time=2, fixed_ts=fixed_tl,reward_fn=reward)
         env.reset()
 
         agents = {
